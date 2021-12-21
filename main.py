@@ -8,12 +8,16 @@ import uvicorn
 from starlette.staticfiles import StaticFiles
 from db.Schemas import *
 from sqlalchemy.orm import Session
+import Apis.Allapis as Allapis
+import os
 
+ROOT_DIR = os.path.abspath(os.curdir)
 api = fastapi.FastAPI(titel="Learn", description="Started learning fastapi using alchemy library")
-#Base.metadata.create_all(engine)
+# Base.metadata.create_all(engine)
 fastapi_chameleon.global_init('templates', auto_reload=True)
 api.mount('/static', StaticFiles(directory="static"), name="static")
 api.include_router(router=home.router)
+api.include_router(router=Allapis.router)
 
 
 # @api.get('/')
@@ -32,19 +36,9 @@ def print_hi(a: int, b: int, c: Optional[int] = None):
     return result
 
 
-@api.post('/createorder')
-def createorder(product_name, emailid, db: Session = Depends(getDb)):
-    dbInsert = Order(productname=product_name, emailId=emailid)
-    print(product_name, emailid)
-    db.add(dbInsert)
-    print('data inserted')
-    db.commit()
-    db.refresh(dbInsert)
-    return dbInsert
-
-
 def main():
     # startCreatingTables()
+    print(ROOT_DIR)
     uvicorn.run(api, port=8001)
 
 

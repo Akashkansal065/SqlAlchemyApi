@@ -1,13 +1,15 @@
 import fastapi
 import fastapi_chameleon
 from fastapi_chameleon import template
+import os
 
+ROOT_DIR = os.path.abspath(os.curdir)
 router = fastapi.APIRouter()
 fastapi_chameleon.global_init('templates')
 
 
 @router.get('/')
-@template(template_file='D:/Python/LearnfastApi/templates/home/index.pt')
+@template(template_file=ROOT_DIR+'/templates/home/index.pt')
 def index():
     return {
         'package_count': 274_000,
