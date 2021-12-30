@@ -10,18 +10,19 @@ ROOT_DIR = os.path.abspath('../../')
 driver = None
 
 
-class AllDrivers:
+def getDriver():
+    cprint(ROOT_DIR, 'green')
+    # driver = webdriver.Chrome(executable_path=ROOT_DIR + '/executables/chromedriver.exe')
+    # driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+    return driver
 
-    def __init__(self):
-        cprint(ROOT_DIR, 'green')
-        # driver = webdriver.Chrome(executable_path=ROOT_DIR + '/executables/chromedriver.exe')
-        # driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
-        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-        return driver
 
-    def closeDriver(self,driver):
-        driver.quit()
+def closeDriver(driver):
+    driver.quit()
 
-#    driv = getDriver()
-#    driv.get('https://www.google.com')
-#    closeDriver(driv)
+
+driv = getDriver()
+driv.get('https://www.google.com')
+elem = driv.find_element_by_name("q").send_keys("pappu pass ")
+closeDriver(driv)

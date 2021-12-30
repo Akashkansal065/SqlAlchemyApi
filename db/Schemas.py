@@ -23,6 +23,7 @@ class Order(Sqldeclarative):
     modidate = sqa.Column(sqa.DateTime(timezone=True), default=datetime.datetime.utcnow, onupdate=func.now())
     productname = sqa.Column(sqa.String)
     emailId = sqa.Column(sqa.String)
+    username = sqa.Column(sqa.String)
 
 
 class Orderdetails(Sqldeclarative):

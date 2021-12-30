@@ -11,7 +11,7 @@ router = fastapi.APIRouter()
 
 @router.post('/createorder')
 def createorder(proddet: pyview.Orderview, db: Session = Depends(getSess.getDb)):
-    dbInsert = Order(productname=proddet.productname, emailId=proddet.emailId)
+    dbInsert = Order(productname=proddet.productname, emailId=proddet.emailId, username = proddet.username)
     print(proddet.productname, proddet.emailId)
     db.add(dbInsert)
     print('data inserted')
