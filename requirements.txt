@@ -9,7 +9,7 @@ starlette
 typing
 pytest
 alembic
-selenium==3.141.0
+selenium
 webdriver-manager
 pytest-soft-assertions
 h11
@@ -42,3 +42,5 @@ PyMySQL
 zipp
 termcolor
 pytest-xdist
+openpyxl
+pandas
