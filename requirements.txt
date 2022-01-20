@@ -44,3 +44,7 @@ termcolor
 pytest-xdist
 openpyxl
 pandas
+html5lib
+BeautifulSoup4
+matplotlib
+numpy
